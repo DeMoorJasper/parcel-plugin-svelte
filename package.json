@@ -11,6 +11,10 @@
     "parcel",
     "svelte"
   ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DeMoorJasper/parcel-plugin-svelte.git"
+  },
   "author": "",
   "license": "ISC",
   "dependencies": {
