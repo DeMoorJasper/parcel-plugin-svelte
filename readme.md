@@ -5,9 +5,6 @@ A parcel plugin that enables svelte support
 
 ## [CHANGELOG](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
 
-## Planned features
-* The ability to import html - STATUS: BLOCKED [No html bundle loader ISSUE/#178](https://github.com/parcel-bundler/parcel/issues/178)
-
 ## Installation
 ```bash
 npm install parcel-plugin-svelte -s
