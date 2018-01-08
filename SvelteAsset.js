@@ -5,7 +5,8 @@ class SvelteAsset extends JSAsset {
   async parse(code) {
     const svelteOptions = {
       generate: 'dom',
-      format: 'cjs'
+      format: 'cjs',
+      store: true
     };
 
     const compiled = compile(code, svelteOptions);
