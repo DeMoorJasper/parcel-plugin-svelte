@@ -18,3 +18,9 @@ All notable changes to this project will be documented in this file.
 
 ## 0.1.0-alpha
 - Fix a bug with post-processing through babel - related to issue [#2](https://github.com/DeMoorJasper/parcel-plugin-svelte/issues/2)
+
+## 0.1.1-alpha
+- Add npmignore
+
+## 0.1.2-alpha
+- Support svelte store
