@@ -5,7 +5,24 @@ A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeM
 
 ## Installation
 ```bash
-npm install parcel-plugin-svelte -s
+yarn add parcel-plugin-svelte -D
+```
+or
+```bash
+npm install parcel-plugin-svelte -D
+```
+
+## Configuration
+The default configuration should work for most people but I added the possibility to define your own config values either through `svelte.config.js`(preferred method) or `.svelterc`, for documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
+```Javascript
+// Used by svelte.compile
+compilerOptions: {
+  ...
+},
+// Used by svelte.preprocess
+preprocess: {
+  ...
+}
 ```
 
 ## Development/Contribution
