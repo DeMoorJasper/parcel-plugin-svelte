@@ -25,7 +25,7 @@ class SvelteAsset extends JSAsset {
 
     const { code, map, ast, css } = compile(inputCode, svelteOptions.compilerOptions);
     this.contents = code;
-    if (this.options.sourceMaps && !this.sourceMap) {
+    if (this.options.sourceMaps) {
       map.sources = [this.relativeName];
       map.sourcesContent = [this.contents];
       this.sourceMap = map;
