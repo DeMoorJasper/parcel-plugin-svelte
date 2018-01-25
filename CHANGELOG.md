@@ -1,6 +1,16 @@
 # Changelog
 All notable changes to this project will be documented in this file.
 
+## 0.2.0
+### Breaking changes
+- Only works with Parcel 1.5 +
+### Added & Improved
+- Add sourcemap support
+- Improve code for Parcel 1.5.0
+
+## 0.1.3
+- Add `svelte.config.js` support
+
 ## 0.1.2-alpha
 - Support svelte store
 
