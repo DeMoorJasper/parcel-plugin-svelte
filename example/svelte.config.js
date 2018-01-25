@@ -4,27 +4,5 @@ module.exports = {
     generate: 'dom',
     format: 'cjs',
     store: true
-  },
-  preprocess: {
-    markup: ({ content }) => {
-      return {
-        code: content,
-        map: {}
-      };
-    },
-  
-    style: ({ content, attributes }) => {
-      return {
-        code: content,
-        map: {}
-      };
-    },
-  
-    script: ({ content, attributes }) => {
-      return {
-        code: content,
-        map: {}
-      };
-    }
   }
 };
