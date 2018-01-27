@@ -2,7 +2,7 @@
   "name": "parcel-plugin-svelte",
   "version": "0.2.0",
   "description": "Parcel plugin to support svelte",
-  "main": "index.js",
+  "main": "./src/index.js",
   "scripts": {
     "example": "cd example && npm start"
   },

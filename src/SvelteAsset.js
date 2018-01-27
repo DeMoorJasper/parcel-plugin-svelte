@@ -1,5 +1,8 @@
 const { compile, preprocess } = require('svelte');
-const JSAsset = require('parcel-bundler/src/assets/JSAsset');
+
+// Parcel requires
+const parcelRequire = require('./parcelRequire');
+const JSAsset = require(parcelRequire.JSAsset);
 
 class SvelteAsset extends JSAsset {
   async parse(inputCode) {
