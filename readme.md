@@ -13,7 +13,7 @@ npm install parcel-plugin-svelte -D
 ```
 
 ## Configuration
-The default configuration should work for most people but I added the possibility to define your own config values either through `svelte.config.js`(preferred method) or `.svelterc`, for documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
+The default configuration should work for most people but I added the possibility to define your own config values any of through `svelte.config.js`(preferred method), `.svelterc`, or `svelte` field in `package.json`, for documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
 ```Javascript
 // Used by svelte.compile
 compilerOptions: {

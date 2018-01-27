@@ -16,9 +16,9 @@ class SvelteAsset extends JSAsset {
       preprocess: undefined
     };
 
-    const customConfig = await this.getConfig(['.svelterc', 'svelte.config.js']);
+    const customConfig = await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json']);
     if (customConfig) {
-      svelteOptions = Object.assign(svelteOptions, customConfig);
+      svelteOptions = Object.assign(svelteOptions, customConfig.svelte || customConfig);
     }
 
     if (svelteOptions.preprocess) {
