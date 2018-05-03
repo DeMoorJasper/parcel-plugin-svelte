@@ -4,8 +4,7 @@
   "description": "Parcel plugin to support svelte",
   "main": "./src/index.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha",
-    "test:ci": "NODE_ENV=test mocha --timeout 50000"
+    "test": "NODE_ENV=test mocha --timeout 50000"
   },
   "keywords": [
     "parcel",

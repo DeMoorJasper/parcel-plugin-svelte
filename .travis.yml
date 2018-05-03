@@ -4,5 +4,5 @@ node_js:
 cache:
   yarn: true
 script:
-  - yarn test:ci
+  - yarn test
 sudo: false
