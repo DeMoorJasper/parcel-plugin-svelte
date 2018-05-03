@@ -1,7 +1,12 @@
 const { compile, preprocess } = require('svelte');
 const { Asset } = require('parcel-bundler');
 
-class SvelteAsset extends JSAsset {
+class SvelteAsset extends Asset {
+  constructor(name, pkg, options) {
+    super(name, pkg, options);
+    this.type = 'js';
+  }
+
   async parse(inputCode) {
     let svelteOptions = {
       compilerOptions: {
@@ -25,19 +30,11 @@ class SvelteAsset extends JSAsset {
     }
 
     return compile(inputCode, svelteOptions.compilerOptions);
-    
-    this.contents = code;
-    if (this.options.sourceMaps) {
-      map.sources = [this.relativeName];
-      map.sourcesContent = [this.contents];
-      this.sourceMap = map;
-    }
-
-    return super.parse(this.contents);
   }
 
   async generate() {
-    const { code, map, ast, css, cssMap } = this.ast;
+    const { map, code } = this.ast.js;
+    const css = this.ast.css.code;
 
     if (this.options.sourceMaps) {
       map.sources = [this.relativeName];
@@ -48,7 +45,7 @@ class SvelteAsset extends JSAsset {
       {
         type: 'js',
         value: code,
-        sourceMap: this.options.sourceMaps ? map : null
+        sourceMap: this.options.sourceMaps ? map : undefined
       }
     ];
 

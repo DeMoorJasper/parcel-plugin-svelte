@@ -1,5 +1,5 @@
-.vscode
 node_modules
-test
-.gitignore
+.vscode
+package-lock.json
 yarn.lock
+.cache
