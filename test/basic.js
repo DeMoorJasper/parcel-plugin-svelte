@@ -21,7 +21,5 @@ describe('basic', function() {
         }
       ]
     });
-
-    
   });
 });
