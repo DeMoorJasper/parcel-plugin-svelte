@@ -1,3 +1,5 @@
 .vscode
-example
 node_modules
+test
+.gitignore
+yarn.lock

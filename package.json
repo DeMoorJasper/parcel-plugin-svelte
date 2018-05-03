@@ -4,7 +4,7 @@
   "description": "Parcel plugin to support svelte",
   "main": "./src/index.js",
   "scripts": {
-    "example": "cd example && npm start"
+    "test": "mocha"
   },
   "keywords": [
     "parcel",
