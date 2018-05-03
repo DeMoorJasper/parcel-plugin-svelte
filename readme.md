@@ -37,14 +37,6 @@ If you set `compilerOptions.css` `false`, CSS will be bundled in a separate
 file. It also enables post-transformations provided by Parcel such as PostCSS
 and file resolution for `url()`.
 
-## Development/Contribution
-
-### Running the example
-
-```bash
-npm run example
-```
-
 ## License
 
 MIT License
