@@ -37,6 +37,10 @@ If you set `compilerOptions.css` `false`, CSS will be bundled in a separate
 file. It also enables post-transformations provided by Parcel such as PostCSS
 and file resolution for `url()`.
 
+## How does it work?
+
+If you want to know how it works have a look at [my article](https://medium.com/@jasperdemoor/writing-a-parcel-plugin-3936271cbaaa) about this plugin, might help if you wanna fix a bug or write your own parcel-plugin.
+
 ## License
 
 MIT License
