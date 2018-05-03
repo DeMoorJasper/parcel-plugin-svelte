@@ -1,6 +1,6 @@
 # parcel-plugin-svelte
 
-![Travis CI](https://travis-ci.org/DeMoorJasper/parcel-plugin-svelte.svg?branch=master)
+[![Travis CI](https://travis-ci.org/DeMoorJasper/parcel-plugin-svelte.svg?branch=master)](https://travis-ci.org/DeMoorJasper/parcel-plugin-svelte)
 
 A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
 
