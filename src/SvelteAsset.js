@@ -7,7 +7,7 @@ class SvelteAsset extends Asset {
     this.type = 'js';
   }
 
-  async parse(inputCode) {
+  async generate() {
     let svelteOptions = {
       compilerOptions: {
         generate: 'dom',
@@ -25,16 +25,13 @@ class SvelteAsset extends Asset {
     }
 
     if (svelteOptions.preprocess) {
-      const preprocessed = await preprocess(inputCode, svelteOptions.preprocess);
-      inputCode = preprocessed.toString();
+      const preprocessed = await preprocess(this.contents, svelteOptions.preprocess);
+      this.contents = preprocessed.toString();
     }
 
-    return compile(inputCode, svelteOptions.compilerOptions);
-  }
-
-  async generate() {
-    const { map, code } = this.ast.js;
-    const css = this.ast.css.code;
+    let { css, js } = compile(this.contents, svelteOptions.compilerOptions);
+    let { map,code } = js;
+    css = css.code;
 
     if (this.options.sourceMaps) {
       map.sources = [this.relativeName];
