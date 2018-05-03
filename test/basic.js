@@ -1,4 +1,5 @@
-const { setupBundler, assertBundleTree } = require('./utils');
+const { setupBundler } = require('./utils');
+const assertBundleTree = require('parcel-assert-bundle-tree');
 const path = require('path');
 
 describe('basic', function() {

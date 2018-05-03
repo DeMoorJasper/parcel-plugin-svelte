@@ -15,4 +15,3 @@ async function setupBundler(input, options) {
 }
 
 exports.setupBundler = setupBundler;
-exports.assertBundleTree = require('parcel-assert-bundle-tree');
