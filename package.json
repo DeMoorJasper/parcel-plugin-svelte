@@ -16,8 +16,13 @@
   },
   "author": "",
   "license": "ISC",
-  "dependencies": {
-    "parcel-bundler": "^1.5.0",
-    "svelte": "^1.53.0"
+  "peerDependencies": {
+    "parcel-bundler": "^1.7.0",
+    "svelte": "^2.0.0"
+  },
+  "devDependencies": {
+    "mocha": "^5.1.1",
+    "parcel-bundler": "^1.7.1",
+    "svelte": "^2.4.2"
   }
 }
