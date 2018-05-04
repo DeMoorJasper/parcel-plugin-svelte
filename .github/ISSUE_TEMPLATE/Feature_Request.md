@@ -1,6 +1,6 @@
 ---
 name: 🙋 Feature Request
-about: If something isn't working as expected 🤔.
+about: Want me to add something?
 
 ---
 
