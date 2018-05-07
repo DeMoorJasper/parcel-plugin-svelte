@@ -1,5 +1,5 @@
 const { compile, preprocess } = require('svelte');
-const { Asset } = require('parcel-bundler');
+const { Asset } = require('./ParcelAdapter');
 
 class SvelteAsset extends Asset {
   constructor(name, pkg, options) {
