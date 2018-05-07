@@ -8,7 +8,8 @@ async function setupBundler(input, options) {
     watch: false,
     cache: false,
     hmr: false,
-    logLevel: 0
+    logLevel: 0,
+    publicUrl: './'
   }, options));
   await SveltePlugin(bundler);
   return bundler;
