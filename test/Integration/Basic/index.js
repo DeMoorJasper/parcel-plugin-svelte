@@ -9,6 +9,4 @@ function initComponent() {
   demo.set({ name: 'everybody' });
 }
 
-document.addEventListener("DOMContentLoaded", function (event) {
-  initComponent();
-});
+initComponent();
