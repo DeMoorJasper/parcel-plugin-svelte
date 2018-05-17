@@ -5,4 +5,4 @@ const app = new App({
     data: {
         name: "world"
     }
-})
+});
