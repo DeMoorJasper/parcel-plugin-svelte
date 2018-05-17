@@ -3,4 +3,6 @@ node_modules
 package-lock.json
 yarn.lock
 .cache
-test
+dist
+lib
+.gitignore

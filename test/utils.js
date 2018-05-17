@@ -1,6 +1,6 @@
 const Bundler = require('parcel-bundler');
 const path = require('path');
-const SveltePlugin = require('../src/index');
+const SveltePlugin = require('../dist');
 const vm = require('vm');
 const fs = require('fs');
 
