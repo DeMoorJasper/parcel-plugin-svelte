@@ -14,4 +14,5 @@ function capitalize(str) {
 	return str[0].toUpperCase() + str.slice(1);
 }
 
-module.exports = { sanitize: sanitize, capitalize: capitalize }
+exports.sanitize = sanitize;
+exports.capitalize = capitalize;
