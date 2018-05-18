@@ -24,7 +24,7 @@ class SvelteAsset extends Asset {
       name: capitalize(sanitize(this.relativeName)) 
     };
 
-    const customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
     customConfig = customConfig.svelte || customConfig;
     if (customConfig.preprocess) {
       preprocessOptions = customConfig.preprocess;
