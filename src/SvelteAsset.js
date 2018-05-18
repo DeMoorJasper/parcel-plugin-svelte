@@ -24,21 +24,19 @@ class SvelteAsset extends Asset {
       name: capitalize(sanitize(this.relativeName)) 
     };
 
-    const customConfig = await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json']);
-    if (customConfig) {
-      const customOptions = customConfig.svelte || customConfig;
-      if (customOptions.preprocess) {
-        preprocessOptions = customOptions.preprocess;
-      }
-      if (customOptions.compilerOptions) {
-        Object.keys(customOptions.compilerOptions).forEach(key => {
-          if (fixedCompilerOptions[key]) return;
-          compilerOptions[key] = customOptions.compilerOptions[key];
-        });
-      }
+    const customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    customConfig = customConfig.svelte || customConfig;
+    if (customConfig.preprocess) {
+      preprocessOptions = customConfig.preprocess;
+    }
+    if (customConfig.compilerOptions) {
+      Object.keys(customConfig.compilerOptions).forEach(key => {
+        if (fixedCompilerOptions[key]) return;
+        compilerOptions[key] = customConfig.compilerOptions[key];
+      });
     }
 
-    compilerOptions = Object.assign({}, compilerOptions, fixedCompilerOptions);
+    customConfig = Object.assign({}, compilerOptions, fixedCompilerOptions);
 
     if (preprocessOptions) {
       const preprocessed = await preprocess(this.contents, preprocessOptions);
