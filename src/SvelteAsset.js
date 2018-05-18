@@ -20,7 +20,7 @@ class SvelteAsset extends Asset {
     const fixedCompilerOptions = {
       filename: this.relativeName,
       // the name of the constructor. Required for 'iife' and 'umd' output,
-	    // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
+      // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
       name: capitalize(sanitize(this.relativeName)) 
     };
 
