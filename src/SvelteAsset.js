@@ -55,6 +55,12 @@ class SvelteAsset extends Asset {
 
     return parts;
   }
+
+  async postProcess(generated) {
+    // Hacky fix to remove duplicate JS asset (Css HMR code)
+    let filteredArr = generated.filter(part => part.type !== 'js');
+    return [generated[0]].concat(filteredArr);
+  }
 }
 
 module.exports = SvelteAsset;
