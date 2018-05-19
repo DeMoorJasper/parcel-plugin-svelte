@@ -4,7 +4,7 @@
   "description": "Parcel plugin to support svelte",
   "main": "./dist.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --timeout 50000",
+    "test": "NODE_ENV=test mocha --require babel-core/register --timeout 50000",
     "build": "babel src -d lib",
     "prepublish": "yarn build"
   },
