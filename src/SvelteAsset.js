@@ -29,14 +29,8 @@ class SvelteAsset extends Asset {
     if (customConfig.preprocess) {
       preprocessOptions = customConfig.preprocess;
     }
-    if (customConfig.compilerOptions) {
-      Object.keys(customConfig.compilerOptions).forEach(key => {
-        if (fixedCompilerOptions[key]) return;
-        compilerOptions[key] = customConfig.compilerOptions[key];
-      });
-    }
 
-    customConfig = Object.assign({}, compilerOptions, fixedCompilerOptions);
+    compilerOptions = Object.assign(compilerOptions, customConfig.compilerOptions || {}, fixedCompilerOptions);
 
     if (preprocessOptions) {
       const preprocessed = await preprocess(this.contents, preprocessOptions);
@@ -68,6 +62,12 @@ class SvelteAsset extends Asset {
     }
 
     return parts;
+  }
+
+  async postProcess(generated) {
+    // Hacky fix to remove duplicate JS asset (Css HMR code)
+    let filteredArr = generated.filter(part => part.type !== 'js');
+    return [generated[0]].concat(filteredArr);
   }
 }
 
