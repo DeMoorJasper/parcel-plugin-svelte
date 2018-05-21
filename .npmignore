@@ -4,6 +4,5 @@ package-lock.json
 yarn.lock
 .cache
 dist
-lib
 .gitignore
 example
