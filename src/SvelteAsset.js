@@ -3,6 +3,8 @@ const { Asset } = require('./ParcelAdapter');
 const { sanitize, capitalize } = require('./utils');
 
 
+const hotApi = require.resolve('./hot-api');
+
 function makeHot(id, code, hotOptions) {
   const options = JSON.stringify(hotOptions);
   const replacement = `
@@ -64,7 +66,11 @@ class SvelteAsset extends Asset {
 
     let { css, js } = compile(this.contents, compilerOptions);
     let { map,code } = js;
-    code = makeHot(fixedCompilerOptions.filename, code);
+
+    if (process.env.NODE_ENV !== 'production') {
+      code = makeHot(fixedCompilerOptions.filename, code);
+    }
+
     css = css.code;
 
     if (this.options.sourceMaps) {
