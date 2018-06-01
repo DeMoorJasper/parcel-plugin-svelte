@@ -2,11 +2,7 @@ const { compile, preprocess } = require('svelte');
 const { Asset } = require('./ParcelAdapter');
 const { sanitize, capitalize } = require('./utils');
 
-
-const hotApi = require.resolve('./hot-api');
-
-function makeHot(id, code, hotOptions) {
-  const options = JSON.stringify(hotOptions);
+function makeHot(id, code) {
   const replacement = `
 if (module.hot) {
   const { configure, register, reload } = require('parcel-plugin-svelte/lib/hot-api');
@@ -15,7 +11,7 @@ if (module.hot) {
 
   if (!module.hot.data) {
     // initial load
-    configure(${options});
+    configure({});
     $2 = register('${id}', $2);
   } else {
     // hot update
