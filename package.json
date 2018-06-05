@@ -1,12 +1,12 @@
 {
   "name": "parcel-plugin-svelte",
-  "version": "1.1.6",
+  "version": "1.2.0",
   "description": "Parcel plugin to support svelte",
   "main": "./dist.js",
   "scripts": {
     "test": "NODE_ENV=test mocha --require babel-core/register --timeout 50000",
     "build": "babel src -d lib",
-    "prepublish": "yarn build",
+    "prepublish": "yarn changelog && yarn build",
     "changelog": "auto-changelog"
   },
   "keywords": [
