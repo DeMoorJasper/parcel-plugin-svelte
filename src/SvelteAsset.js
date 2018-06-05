@@ -1,6 +1,32 @@
 const { compile, preprocess } = require('svelte');
 const { Asset } = require('./ParcelAdapter');
 const { sanitize, capitalize } = require('./utils');
+const path = require('path');
+
+function makeHot(id, code, asset) {
+  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api'));
+
+  const replacement = `
+    if (module.hot) {
+      const { configure, register, reload } = require('${hotApiRequire}');
+
+      module.hot.accept();
+
+      if (!module.hot.data) {
+        // initial load
+        configure({});
+        $2 = register('${id}', $2);
+      } else {
+        // hot update
+        $2 = reload('${id}', $2);
+      }
+    }
+
+    module.exports = $2;
+  `;
+
+  return code.replace(/(module.exports = ([^;]*));/, replacement);
+}
 
 class SvelteAsset extends Asset {
   constructor(name, pkg, options) {
@@ -21,7 +47,7 @@ class SvelteAsset extends Asset {
       filename: this.relativeName,
       // the name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName)) 
+      name: capitalize(sanitize(this.relativeName))
     };
 
     let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
@@ -39,6 +65,11 @@ class SvelteAsset extends Asset {
 
     let { css, js } = compile(this.contents, compilerOptions);
     let { map,code } = js;
+
+    if (process.env.NODE_ENV !== 'production') {
+      code = makeHot(fixedCompilerOptions.filename, code, this);
+    }
+
     css = css.code;
 
     if (this.options.sourceMaps) {
