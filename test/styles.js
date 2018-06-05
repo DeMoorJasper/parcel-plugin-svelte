@@ -11,7 +11,14 @@ describe('styles', function() {
 
     assertBundleTree(bundle, {
       name: 'main.js',
-      assets: ['main.js', 'component.svelte']
+      assets: [
+        'main.js', 
+        'component.svelte',
+        'hot-api.js',
+        'index.js',
+        'proxy.js',
+        'registry.js'
+      ]
     });
 
     let bundleContent = await new Promise(resolve => fs.readFile(bundle.name, (err, data) => {

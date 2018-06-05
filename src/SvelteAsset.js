@@ -1,26 +1,29 @@
 const { compile, preprocess } = require('svelte');
 const { Asset } = require('./ParcelAdapter');
 const { sanitize, capitalize } = require('./utils');
+const path = require('path');
 
-function makeHot(id, code) {
+function makeHot(id, code, asset) {
+  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api'));
+
   const replacement = `
-if (module.hot) {
-  const { configure, register, reload } = require('parcel-plugin-svelte/lib/hot-api');
+    if (module.hot) {
+      const { configure, register, reload } = require('${hotApiRequire}');
 
-  module.hot.accept();
+      module.hot.accept();
 
-  if (!module.hot.data) {
-    // initial load
-    configure({});
-    $2 = register('${id}', $2);
-  } else {
-    // hot update
-    $2 = reload('${id}', $2);
-  }
-}
+      if (!module.hot.data) {
+        // initial load
+        configure({});
+        $2 = register('${id}', $2);
+      } else {
+        // hot update
+        $2 = reload('${id}', $2);
+      }
+    }
 
-module.exports = $2;
-`;
+    module.exports = $2;
+  `;
 
   return code.replace(/(module.exports = ([^;]*));/, replacement);
 }
@@ -64,7 +67,7 @@ class SvelteAsset extends Asset {
     let { map,code } = js;
 
     if (process.env.NODE_ENV !== 'production') {
-      code = makeHot(fixedCompilerOptions.filename, code);
+      code = makeHot(fixedCompilerOptions.filename, code, this);
     }
 
     css = css.code;
