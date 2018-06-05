@@ -6,7 +6,8 @@
   "scripts": {
     "test": "NODE_ENV=test mocha --require babel-core/register --timeout 50000",
     "build": "babel src -d lib",
-    "prepublish": "yarn build"
+    "prepublish": "yarn build",
+    "changelog": "auto-changelog"
   },
   "keywords": [
     "parcel",
@@ -23,6 +24,7 @@
     "svelte": "^2.0.0"
   },
   "devDependencies": {
+    "auto-changelog": "^1.7.1",
     "babel-cli": "^6.26.0",
     "babel-preset-env": "^1.7.0",
     "mocha": "^5.1.1",
