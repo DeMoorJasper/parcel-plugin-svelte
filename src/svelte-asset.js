@@ -1,7 +1,7 @@
-const { compile, preprocess } = require('svelte');
-const { Asset } = require('./ParcelAdapter');
-const { sanitize, capitalize } = require('./utils');
 const path = require('path');
+const {compile, preprocess} = require('svelte');
+const {Asset} = require('./parcel-adapter');
+const {sanitize, capitalize} = require('./utils');
 
 function makeHot(id, code, asset) {
   const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/, '/');
@@ -41,11 +41,11 @@ class SvelteAsset extends Asset {
       store: true,
       css: false
     };
-    let preprocessOptions = undefined;
+    let preprocessOptions;
 
     const fixedCompilerOptions = {
       filename: this.relativeName,
-      // the name of the constructor. Required for 'iife' and 'umd' output,
+      // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
       name: capitalize(sanitize(this.relativeName))
     };
@@ -63,8 +63,8 @@ class SvelteAsset extends Asset {
       this.contents = preprocessed.toString();
     }
 
-    let { css, js } = compile(this.contents, compilerOptions);
-    let { map,code } = js;
+    let {css, js} = compile(this.contents, compilerOptions);
+    let {map, code} = js;
 
     if (process.env.NODE_ENV !== 'production') {
       code = makeHot(fixedCompilerOptions.filename, code, this);
@@ -77,7 +77,7 @@ class SvelteAsset extends Asset {
       map.sourcesContent = [this.contents];
     }
 
-    let parts = [
+    const parts = [
       {
         type: 'js',
         value: code,
@@ -97,7 +97,7 @@ class SvelteAsset extends Asset {
 
   async postProcess(generated) {
     // Hacky fix to remove duplicate JS asset (Css HMR code)
-    let filteredArr = generated.filter(part => part.type !== 'js');
+    const filteredArr = generated.filter(part => part.type !== 'js');
     return [generated[0]].concat(filteredArr);
   }
 }
