@@ -14,7 +14,7 @@ describe('styles', function() {
       assets: [
         'main.js', 
         'component.svelte',
-        'hot-api.js',
+        'HotApi.js',
         'index.js',
         'proxy.js',
         'registry.js'

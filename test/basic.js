@@ -13,7 +13,7 @@ describe('basic', function() {
         'index.js', 
         'Demo.svelte', 
         'Header.svelte',
-        'hot-api.js',
+        'HotApi.js',
         'index.js',
         'proxy.js',
         'registry.js'

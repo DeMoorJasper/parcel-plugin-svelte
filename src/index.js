@@ -1,3 +1,3 @@
 module.exports = function (bundler) {
-    bundler.addAssetType('svelte', require.resolve('./SvelteAsset'));
+  bundler.addAssetType('svelte', require.resolve('./SvelteAsset'));
 };

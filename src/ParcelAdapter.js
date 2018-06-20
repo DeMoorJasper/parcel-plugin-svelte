@@ -1,7 +1,7 @@
 function parcelExport() {
   try {
     return require('parcel');
-  } catch(e) {
+  } catch (e) {
     return require('parcel-bundler');
   }
 }
