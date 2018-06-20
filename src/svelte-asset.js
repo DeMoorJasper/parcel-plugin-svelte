@@ -1,10 +1,10 @@
 const path = require('path');
 const {compile, preprocess} = require('svelte');
-const {Asset} = require('./ParcelAdapter');
-const {sanitize, capitalize} = require('./Utils');
+const {Asset} = require('./parcel-adapter');
+const {sanitize, capitalize} = require('./utils');
 
 function makeHot(id, code, asset) {
-  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./HotApi')).replace(/\\/, '/');
+  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/, '/');
 
   const replacement = `
     if (module.hot) {
