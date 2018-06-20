@@ -4,7 +4,7 @@ const {Asset} = require('./ParcelAdapter');
 const {sanitize, capitalize} = require('./Utils');
 
 function makeHot(id, code, asset) {
-  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./HotApi'));
+  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./HotApi')).replace(/\\/, '/');
 
   const replacement = `
     if (module.hot) {
