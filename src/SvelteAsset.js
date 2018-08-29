@@ -4,7 +4,7 @@ const { sanitize, capitalize } = require('./utils');
 const path = require('path');
 
 function makeHot(id, code, asset) {
-  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/, '/');
+  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/g, '/');
 
   const replacement = `
     if (module.hot) {
