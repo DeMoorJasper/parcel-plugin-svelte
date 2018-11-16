@@ -39,7 +39,7 @@ class SvelteAsset extends Asset {
       generate: 'dom',
       format: 'cjs',
       store: true,
-      css: false
+      css: true
     };
     let preprocessOptions;
 
