@@ -18,7 +18,11 @@ npm install parcel-plugin-svelte -D
 
 ## Configuration
 
-The default configuration should work for most people but I added the possibility to define your own config values any of through `svelte.config.js`(preferred method), `.svelterc`, or `svelte` field in `package.json`, for documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
+The default configuration should work for most people but for anyone who would like to change the way svelte compiles the files there is the possibility to configure it.
+
+This can be done though a `svelte.config.js` file, `.svelterc` file or `svelte` field in `package.json`.
+
+For documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
 
 ```Javascript
 // Used by svelte.compile
@@ -31,11 +35,9 @@ preprocess: {
 }
 ```
 
-### `compilerOptions.css`
+### CSS CompilerOptions
 
-If you set `compilerOptions.css` `false`, CSS will be bundled in a separate
-file. It also enables post-transformations provided by Parcel such as PostCSS
-and file resolution for `url()`.
+If you set `compilerOptions.css` to `false`, CSS will be bundled in a separate file. It also enables post-transformations provided by Parcel such as PostCSS and file resolution for `url()`.
 
 ## How does it work?
 
