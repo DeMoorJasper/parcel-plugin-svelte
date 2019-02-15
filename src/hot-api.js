@@ -1,4 +1,4 @@
-import {Registry, configure as configureProxy, createProxy} from 'svelte-dev-helper';
+import { Registry, configure as configureProxy, createProxy } from 'svelte-dev-helper';
 
 let hotOptions = {
   noPreserveState: false

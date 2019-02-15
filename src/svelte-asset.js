@@ -1,7 +1,7 @@
 const path = require('path');
-const {compile, preprocess} = require('svelte');
-const {Asset} = require('./parcel-adapter');
-const {sanitize, capitalize} = require('./utils');
+const { compile, preprocess } = require('svelte');
+const { Asset } = require('./parcel-adapter');
+const { sanitize, capitalize } = require('./utils');
 
 function makeHot(id, code, asset) {
   const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/g, '/');
@@ -63,8 +63,8 @@ class SvelteAsset extends Asset {
       this.contents = preprocessed.toString();
     }
 
-    let {css, js} = compile(this.contents, compilerOptions);
-    let {map, code} = js;
+    let { css, js } = compile(this.contents, compilerOptions);
+    let { map, code } = js;
 
     if (process.env.NODE_ENV !== 'production') {
       code = makeHot(fixedCompilerOptions.filename, code, this);
