@@ -4,6 +4,7 @@ const { version } = require('svelte/package.json');
 const major_version = +version[0];
 
 const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
+const svelteShared = require.resolve(major_version >= 3 ? 'svelte/internal.js' : 'svelte/shared.js');
 
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
@@ -56,7 +57,8 @@ class SvelteAsset extends Asset {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName))
+      name: capitalize(sanitize(this.relativeName)),
+      shared: customCompilerOptions.shared || svelteShared
     };
 
     config.compilerOptions = Object.assign({}, defaultOptions, customCompilerOptions, fixedCompilerOptions);
