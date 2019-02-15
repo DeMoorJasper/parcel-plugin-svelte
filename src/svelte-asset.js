@@ -1,11 +1,7 @@
 const path = require('path');
-const { version } = require('svelte/package.json');
-
-const major_version = +version[0];
-const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
-
-const { Asset } = require('./parcel-adapter');
-const { sanitize, capitalize } = require('./utils');
+const {compile, preprocess} = require('svelte');
+const {Asset} = require('./parcel-adapter');
+const {sanitize, capitalize} = require('./utils');
 
 function makeHot(id, code, asset) {
   const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/g, '/');
@@ -41,35 +37,34 @@ class SvelteAsset extends Asset {
   async generate() {
     let compilerOptions = {
       generate: 'dom',
+      format: 'cjs',
       store: true,
       css: true
     };
-
-    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
-    customConfig = customConfig.svelte || customConfig;
-
-    let customCompilerOptions = customConfig.compilerOptions || {};
+    let preprocessOptions;
 
     const fixedCompilerOptions = {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName)),
-      format: major_version >= 3 ? 'esm' : 'es',
-      shared: require.resolve(
-        customCompilerOptions.shared || major_version >= 3 ? 'svelte/internal.js' : 'svelte/shared.js'
-      )
+      name: capitalize(sanitize(this.relativeName))
     };
 
-    compilerOptions = Object.assign(compilerOptions, customCompilerOptions, fixedCompilerOptions);
-    
+    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    customConfig = customConfig.svelte || customConfig;
     if (customConfig.preprocess) {
-      const preprocessed = await preprocess(this.contents, customConfig.preprocess);
+      preprocessOptions = customConfig.preprocess;
+    }
+
+    compilerOptions = Object.assign(compilerOptions, customConfig.compilerOptions || {}, fixedCompilerOptions);
+
+    if (preprocessOptions) {
+      const preprocessed = await preprocess(this.contents, preprocessOptions);
       this.contents = preprocessed.toString();
     }
 
-    let { css, js } = compile(this.contents, compilerOptions);
-    let { map, code } = js;
+    let {css, js} = compile(this.contents, compilerOptions);
+    let {map, code} = js;
 
     if (process.env.NODE_ENV !== 'production') {
       code = makeHot(fixedCompilerOptions.filename, code, this);
