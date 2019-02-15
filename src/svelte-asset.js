@@ -39,32 +39,37 @@ class SvelteAsset extends Asset {
     this.type = 'js';
   }
 
-  async generate() {
-    let compilerOptions = {
-      generate: 'dom',
-      format: 'cjs',
-      store: true,
-      css: true
-    };
-    let preprocessOptions;
+  async getConfig() {
+    let config = (await super.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    config = config.svelte || config;
 
-    const fixedCompilerOptions = {
+    let defaultOptions = {
+      generate: 'dom',
+      store: true,
+      css: true,
+      format: 'cjs'
+    };
+
+    let customCompilerOptions = config.compilerOptions || {};
+
+    let fixedCompilerOptions = {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
       name: capitalize(sanitize(this.relativeName))
     };
 
-    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
-    customConfig = customConfig.svelte || customConfig;
-    if (customConfig.preprocess) {
-      preprocessOptions = customConfig.preprocess;
-    }
+    config.compilerOptions = Object.assign({}, defaultOptions, customCompilerOptions, fixedCompilerOptions);
 
-    compilerOptions = Object.assign(compilerOptions, customConfig.compilerOptions || {}, fixedCompilerOptions);
+    return config;
+  }
 
-    if (preprocessOptions) {
-      const preprocessed = await preprocess(this.contents, preprocessOptions);
+  async generate() {
+    let config = await this.getConfig();
+    let compilerOptions = config.compilerOptions;
+
+    if (config.preprocess) {
+      const preprocessed = await preprocess(this.contents, config.preprocess);
       this.contents = preprocessed.toString();
     }
 
@@ -72,7 +77,7 @@ class SvelteAsset extends Asset {
     let { map, code } = js;
 
     if (process.env.NODE_ENV !== 'production') {
-      code = makeHot(fixedCompilerOptions.filename, code, this);
+      code = makeHot(compilerOptions.filename, code, this);
     }
 
     css = css.code;
