@@ -11,7 +11,7 @@ describe('with config', function() {
 
     assertBundleTree(bundle, {
       type: 'js',
-      assets: ['run.js', 'AppWithConfig.svelte'],
+      assets: ['run.js', 'AppWithConfig.svelte', 'shared.js'],
       childBundles: [
         {
           type: 'map'
