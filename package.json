@@ -20,7 +20,7 @@
     "url": "git://github.com/DeMoorJasper/parcel-plugin-svelte.git"
   },
   "xo": {
-		"semicolon": true,
+    "semicolon": true,
     "space": 2,
     "ignores": [
       "test/**/**",
