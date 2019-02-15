@@ -1,7 +1,8 @@
 const path = require('path');
 
 function sanitize(input) {
-  return path.basename(input)
+  return path
+    .basename(input)
     .replace(path.extname(input), '')
     .replace(/[^a-zA-Z_$0-9]+/g, '_')
     .replace(/^_/, '')

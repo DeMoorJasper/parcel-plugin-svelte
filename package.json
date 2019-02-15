@@ -4,12 +4,22 @@
   "description": "Parcel plugin to support svelte",
   "main": "./dist.js",
   "scripts": {
-    "test": "yarn lint && NODE_ENV=test mocha --require babel-core/register --timeout 50000",
+    "test": "NODE_ENV=test mocha --require @babel/register --timeout 50000",
     "build": "babel src -d lib",
-    "prepublish": "yarn changelog && yarn build",
-    "changelog": "auto-changelog",
-    "check-lint": "xo --reporter",
-    "lint": "xo --fix"
+    "prepublish": "yarn build",
+    "format": "prettier --write \"./{src,test,example}/**/*.{js,json,md}\"",
+    "clean": "rm -rf node_modules lib test/dist"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
   },
   "keywords": [
     "parcel",
@@ -19,31 +29,24 @@
     "type": "git",
     "url": "git://github.com/DeMoorJasper/parcel-plugin-svelte.git"
   },
-  "xo": {
-		"semicolon": true,
-    "space": 2,
-    "ignores": [
-      "test/**/**",
-      "example/**/**",
-      "src/parcel-adapter.js",
-      "dist.js"
-    ]
-  },
   "author": "Jasper De Moor",
   "license": "ISC",
   "peerDependencies": {
-    "parcel-bundler": "^1.7.0",
+    "parcel-bundler": "^1.11.0",
     "svelte": "^2.0.0"
   },
   "devDependencies": {
-    "auto-changelog": "^1.7.1",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "husky": "^1.3.1",
+    "lint-staged": "^8.1.4",
     "mocha": "^5.1.1",
     "parcel-assert-bundle-tree": "^1.0.0",
-    "parcel-bundler": "^1.7.1",
-    "svelte": "^2.4.2",
-    "xo": "^0.21.1"
+    "parcel-bundler": "^1.11.0",
+    "prettier": "^1.16.4",
+    "svelte": "^2.16.1"
   },
   "dependencies": {
     "svelte-dev-helper": "^1.1.7"
