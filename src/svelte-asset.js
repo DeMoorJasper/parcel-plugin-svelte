@@ -2,9 +2,7 @@ const path = require('path');
 const { version } = require('svelte/package.json');
 
 const major_version = +version[0];
-const { compile, preprocess } = major_version >= 3
-	? require('svelte/compiler.js')
-	: require('svelte');
+const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
 
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
@@ -43,30 +41,30 @@ class SvelteAsset extends Asset {
   async generate() {
     let compilerOptions = {
       generate: 'dom',
-      format: major_version >= 3 ? 'esm' : 'es',
       store: true,
-      css: true,
-      shared: require.resolve(major_version >= 3 ? 'svelte/internal' : 'svelte/shared')
+      css: true
     };
-    let preprocessOptions;
+
+    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    customConfig = customConfig.svelte || customConfig;
+
+    let customCompilerOptions = customConfig.compilerOptions || {};
 
     const fixedCompilerOptions = {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName))
+      name: capitalize(sanitize(this.relativeName)),
+      format: major_version >= 3 ? 'esm' : 'es',
+      shared: require.resolve(
+        customCompilerOptions.shared || major_version >= 3 ? 'svelte/internal.js' : 'svelte/shared.js'
+      )
     };
 
-    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
-    customConfig = customConfig.svelte || customConfig;
+    compilerOptions = Object.assign(compilerOptions, customCompilerOptions, fixedCompilerOptions);
+    
     if (customConfig.preprocess) {
-      preprocessOptions = customConfig.preprocess;
-    }
-
-    compilerOptions = Object.assign(compilerOptions, customConfig.compilerOptions || {}, fixedCompilerOptions);
-
-    if (preprocessOptions) {
-      const preprocessed = await preprocess(this.contents, preprocessOptions);
+      const preprocessed = await preprocess(this.contents, customConfig.preprocess);
       this.contents = preprocessed.toString();
     }
 
