@@ -4,7 +4,7 @@
   "description": "Parcel plugin to support svelte",
   "main": "./dist.js",
   "scripts": {
-    "test": "NODE_ENV=test mocha --require babel-core/register --timeout 50000",
+    "test": "NODE_ENV=test mocha --require @babel/register --timeout 50000",
     "build": "babel src -d lib",
     "prepublish": "yarn build",
     "format": "prettier --write \"./{src,test,example}/**/*.{js,json,md}\"",
@@ -31,8 +31,10 @@
     "svelte": "^2.0.0"
   },
   "devDependencies": {
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.7.0",
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
     "lint-staged": "^8.1.4",
     "mocha": "^5.1.1",
     "parcel-assert-bundle-tree": "^1.0.0",
