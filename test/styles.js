@@ -11,21 +11,16 @@ describe('styles', function() {
 
     assertBundleTree(bundle, {
       name: 'main.js',
-      assets: [
-        'main.js', 
-        'component.svelte',
-        'hot-api.js',
-        'index.js',
-        'proxy.js',
-        'registry.js'
-      ]
+      assets: ['main.js', 'component.svelte', 'hot-api.js', 'index.js', 'proxy.js', 'registry.js']
     });
 
-    let bundleContent = await new Promise(resolve => fs.readFile(bundle.name, (err, data) => {
-      if (err) return reject(err);
-      return resolve(data);
-    }));
-    
+    let bundleContent = await new Promise(resolve =>
+      fs.readFile(bundle.name, (err, data) => {
+        if (err) return reject(err);
+        return resolve(data);
+      })
+    );
+
     assert(bundleContent.toString().indexOf(', the time is') > 0, 'Should contain the component code');
   });
 });

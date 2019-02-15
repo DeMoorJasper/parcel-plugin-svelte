@@ -9,15 +9,7 @@ describe('basic', function() {
 
     assertBundleTree(bundle, {
       type: 'js',
-      assets: [
-        'index.js', 
-        'Demo.svelte', 
-        'Header.svelte',
-        'hot-api.js',
-        'index.js',
-        'proxy.js',
-        'registry.js'
-      ],
+      assets: ['index.js', 'Demo.svelte', 'Header.svelte', 'hot-api.js', 'index.js', 'proxy.js', 'registry.js'],
       childBundles: [
         {
           type: 'map'

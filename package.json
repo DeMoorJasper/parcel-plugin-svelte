@@ -7,7 +7,7 @@
     "test": "yarn lint && NODE_ENV=test mocha --require babel-core/register --timeout 50000",
     "build": "babel src -d lib",
     "prepublish": "yarn build",
-    "format": "prettier --write \"./src/**/*.{js,json,md}\""
+    "format": "prettier --write \"./{src,test,example}/**/*.{js,json,md}\""
   },
   "lint-staged": {
     "*.{js,json,md}": [
