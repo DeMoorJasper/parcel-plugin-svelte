@@ -7,7 +7,8 @@
     "test": "NODE_ENV=test mocha --require babel-core/register --timeout 50000",
     "build": "babel src -d lib",
     "prepublish": "yarn build",
-    "format": "prettier --write \"./{src,test,example}/**/*.{js,json,md}\""
+    "format": "prettier --write \"./{src,test,example}/**/*.{js,json,md}\"",
+    "clean": "rm -rf node_modules lib test/dist"
   },
   "lint-staged": {
     "*.{js,json,md}": [
@@ -26,7 +27,7 @@
   "author": "Jasper De Moor",
   "license": "ISC",
   "peerDependencies": {
-    "parcel-bundler": "^1.7.0",
+    "parcel-bundler": "^1.11.0",
     "svelte": "^2.0.0"
   },
   "devDependencies": {
@@ -35,9 +36,9 @@
     "lint-staged": "^8.1.4",
     "mocha": "^5.1.1",
     "parcel-assert-bundle-tree": "^1.0.0",
-    "parcel-bundler": "^1.7.1",
+    "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",
-    "svelte": "^2.4.2"
+    "svelte": "^2.16.1"
   },
   "dependencies": {
     "svelte-dev-helper": "^1.1.7"
