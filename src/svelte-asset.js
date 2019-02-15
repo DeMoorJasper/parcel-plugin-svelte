@@ -1,5 +1,10 @@
 const path = require('path');
-const { compile, preprocess } = require('svelte');
+
+const { version } = require('svelte/package.json');
+const major_version = +version[0];
+
+const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
+
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
 
