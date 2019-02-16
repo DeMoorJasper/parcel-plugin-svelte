@@ -1,6 +1,6 @@
 const Bundler = require('parcel-bundler');
 const path = require('path');
-const SveltePlugin = require('../dist');
+const SveltePlugin = require('parcel-plugin-svelte');
 
 async function setupBundler(input, options) {
   const bundler = new Bundler(

@@ -1,0 +1,21 @@
+{
+  "name": "svelte-3-tests",
+  "version": "2.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "test:3": "NODE_ENV=test mocha --require @babel/register --timeout 50000",
+    "clean": "rm -rf test/dist"
+  },
+  "dependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1",
+    "@babel/register": "^7.0.0",
+    "mocha": "^5.1.1",
+    "parcel-assert-bundle-tree": "^1.0.0",
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-svelte": "^2.0.0",
+    "svelte": "3.0.0-alpha1"
+  }
+}
