@@ -5,6 +5,7 @@ node_js:
 cache:
   yarn: true
 script:
-  - yarn
+  - yarn clean
+  - yarn install
   - yarn test
 sudo: false
