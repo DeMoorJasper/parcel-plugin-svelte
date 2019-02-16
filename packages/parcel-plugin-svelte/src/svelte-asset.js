@@ -20,17 +20,17 @@ function makeHot(id, code, asset) {
       if (!module.hot.data) {
         // initial load
         configure({});
-        $2 = register('${id}', $2);
+        $3 = register('${id}', $3);
       } else {
         // hot update
-        $2 = reload('${id}', $2);
+        $3 = reload('${id}', $3);
       }
     }
 
-    module.exports = $2;
+    module.exports = $3;
   `;
 
-  return code.replace(/(module.exports = ([^;]*));/, replacement);
+  return code.replace(/((module.exports =|export default) ([^;]*));/, replacement);
 }
 
 class SvelteAsset extends Asset {
@@ -47,7 +47,7 @@ class SvelteAsset extends Asset {
       generate: 'dom',
       store: true,
       css: true,
-      format: 'cjs'
+      format: major_version >= 3 ? 'esm' : 'es'
     };
 
     let customCompilerOptions = config.compilerOptions || {};

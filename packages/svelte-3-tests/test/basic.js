@@ -7,23 +7,9 @@ describe('basic', function() {
     const bundler = await setupBundler(path.join(__dirname, './Integration/Basic/App.svelte'));
     const bundle = await bundler.bundle();
 
-    /*assertBundleTree(bundle, {
+    assertBundleTree(bundle, {
       type: 'js',
-      assets: [
-        'index.js',
-        'Demo.svelte',
-        'Header.svelte',
-        'hot-api.js',
-        'index.js',
-        'proxy.js',
-        'registry.js',
-        'shared.js'
-      ],
-      childBundles: [
-        {
-          type: 'map'
-        }
-      ]
-    });*/
+      assets: ['App.svelte', 'hot-api.js', 'index.js', 'index.js', 'internal.js', 'proxy.js', 'registry.js']
+    });
   });
 });

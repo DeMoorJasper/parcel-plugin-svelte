@@ -10,6 +10,7 @@
     "test:3": "yarn add svelte@3.0.0-alpha1 --exact -OW && lerna run test:3",
     "format": "prettier --write \"./packages/**/*.{js,json,md}\"",
     "build": "lerna run build",
+    "prepublish": "yarn build",
     "clean": "lerna run clean && lerna clean -y"
   },
   "workspaces": [
