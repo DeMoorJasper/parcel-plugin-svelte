@@ -1,6 +1,6 @@
 # parcel-plugin-svelte
 
-[![Travis CI](https://travis-ci.org/DeMoorJasper/parcel-plugin-svelte.svg?branch=master)](https://travis-ci.org/DeMoorJasper/parcel-plugin-svelte)
+[![Build Status](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_apis/build/status/DeMoorJasper.parcel-plugin-svelte?branchName=master)](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_build/latest?definitionId=3&branchName=master)
 
 A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
 
