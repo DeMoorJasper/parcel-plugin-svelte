@@ -6,3 +6,4 @@ yarn.lock
 dist
 lib
 yarn-error.log
+.DS_Store
