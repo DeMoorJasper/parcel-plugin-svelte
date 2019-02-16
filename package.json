@@ -46,7 +46,7 @@
     "parcel-assert-bundle-tree": "^1.0.0",
     "parcel-bundler": "^1.11.0",
     "prettier": "^1.16.4",
-    "svelte": "^2.16.1"
+    "svelte": "^3.0.0-alpha1"
   },
   "dependencies": {
     "svelte-dev-helper": "^1.1.7"

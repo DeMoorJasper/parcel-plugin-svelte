@@ -28,7 +28,7 @@ describe('basic', function() {
   });
 
   // Not sure if we can will be able to run this test
-  it.skip('Should support Svelte 3 features', async function() {
+  it.only('Should support Svelte 3 features', async function() {
     const bundler = await setupBundler(path.join(__dirname, './Integration/V3-Example/App.svelte'));
     const bundle = await bundler.bundle();
   });
