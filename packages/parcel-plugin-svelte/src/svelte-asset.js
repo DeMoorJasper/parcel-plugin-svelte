@@ -1,5 +1,10 @@
 const path = require('path');
-const { compile, preprocess } = require('svelte');
+
+const { version } = require('svelte/package.json');
+const major_version = +version[0];
+
+const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
+
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
 
@@ -15,17 +20,17 @@ function makeHot(id, code, asset) {
       if (!module.hot.data) {
         // initial load
         configure({});
-        $2 = register('${id}', $2);
+        $3 = register('${id}', $3);
       } else {
         // hot update
-        $2 = reload('${id}', $2);
+        $3 = reload('${id}', $3);
       }
     }
 
-    module.exports = $2;
+    module.exports = $3;
   `;
 
-  return code.replace(/(module.exports = ([^;]*));/, replacement);
+  return code.replace(/((module.exports =|export default) ([^;]*));/, replacement);
 }
 
 class SvelteAsset extends Asset {
@@ -34,32 +39,38 @@ class SvelteAsset extends Asset {
     this.type = 'js';
   }
 
-  async generate() {
-    let compilerOptions = {
-      generate: 'dom',
-      format: 'cjs',
-      store: true,
-      css: true
-    };
-    let preprocessOptions;
+  async getConfig() {
+    let config = (await super.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
+    config = config.svelte || config;
 
-    const fixedCompilerOptions = {
+    let defaultOptions = {
+      generate: 'dom',
+      store: true,
+      css: true,
+      format: major_version >= 3 ? 'esm' : 'es'
+    };
+
+    let customCompilerOptions = config.compilerOptions || {};
+
+    let fixedCompilerOptions = {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName))
+      name: capitalize(sanitize(this.relativeName)),
+      shared: customCompilerOptions.shared || major_version >= 3 ? 'svelte/internal.js' : 'svelte/shared.js'
     };
 
-    let customConfig = (await this.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
-    customConfig = customConfig.svelte || customConfig;
-    if (customConfig.preprocess) {
-      preprocessOptions = customConfig.preprocess;
-    }
+    config.compilerOptions = Object.assign({}, defaultOptions, customCompilerOptions, fixedCompilerOptions);
 
-    compilerOptions = Object.assign(compilerOptions, customConfig.compilerOptions || {}, fixedCompilerOptions);
+    return config;
+  }
 
-    if (preprocessOptions) {
-      const preprocessed = await preprocess(this.contents, preprocessOptions);
+  async generate() {
+    let config = await this.getConfig();
+    let compilerOptions = config.compilerOptions;
+
+    if (config.preprocess) {
+      const preprocessed = await preprocess(this.contents, config.preprocess);
       this.contents = preprocessed.toString();
     }
 
@@ -67,7 +78,7 @@ class SvelteAsset extends Asset {
     let { map, code } = js;
 
     if (process.env.NODE_ENV !== 'production') {
-      code = makeHot(fixedCompilerOptions.filename, code, this);
+      code = makeHot(compilerOptions.filename, code, this);
     }
 
     css = css.code;

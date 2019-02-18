@@ -1,0 +1,33 @@
+{
+  "name": "parcel-plugin-svelte",
+  "version": "2.0.0",
+  "description": "Parcel plugin to support svelte",
+  "main": "./dist.js",
+  "scripts": {
+    "build": "babel src -d lib",
+    "prepublish": "yarn build",
+    "clean": "rm -rf lib"
+  },
+  "keywords": [
+    "parcel",
+    "svelte"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/DeMoorJasper/parcel-plugin-svelte.git"
+  },
+  "author": "Jasper De Moor",
+  "license": "ISC",
+  "peerDependencies": {
+    "parcel-bundler": "^1.11.0",
+    "svelte": "^2.0.0 || ^3.0.0"
+  },
+  "dependencies": {
+    "svelte-dev-helper": "^1.1.7"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.2.3",
+    "@babel/core": "^7.2.2",
+    "@babel/preset-env": "^7.3.1"
+  }
+}
