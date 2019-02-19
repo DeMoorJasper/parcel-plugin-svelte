@@ -45,19 +45,25 @@ class SvelteAsset extends Asset {
 
     let defaultOptions = {
       generate: 'dom',
-      store: true,
-      css: true,
-      format: major_version >= 3 ? 'esm' : 'es'
+      css: true
     };
 
     let customCompilerOptions = config.compilerOptions || {};
+
+    if (major_version >= 3) {
+      defaultOptions.format = 'esm';
+      defaultOptions.sveltePath = 'svelte';
+    } else {
+      defaultOptions.format = 'es';
+      defaultOptions.store = true;
+      defaultOptions.shared = 'svelte/shared.js';
+    }
 
     let fixedCompilerOptions = {
       filename: this.relativeName,
       // The name of the constructor. Required for 'iife' and 'umd' output,
       // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: capitalize(sanitize(this.relativeName)),
-      shared: customCompilerOptions.shared || major_version >= 3 ? 'svelte/internal.js' : 'svelte/shared.js'
+      name: capitalize(sanitize(this.relativeName))
     };
 
     config.compilerOptions = Object.assign({}, defaultOptions, customCompilerOptions, fixedCompilerOptions);
