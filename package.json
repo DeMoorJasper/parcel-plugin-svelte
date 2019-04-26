@@ -14,6 +14,7 @@
     "clean": "lerna run clean && lerna clean -y"
   },
   "workspaces": [
+    "svelte-2/*",
     "svelte-3/*",
     "parcel-plugin-svelte"
   ],
