@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_apis/build/status/DeMoorJasper.parcel-plugin-svelte?branchName=master)](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_build/latest?definitionId=3&branchName=master)
 
-A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
+A parcel plugin that enables Svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
 
 ## Installation
 
@@ -22,16 +22,19 @@ The default configuration should work for most people but for anyone who would l
 
 This can be done though a `svelte.config.js` file, `.svelterc` file or `svelte` field in `package.json`.
 
-For documentation on which parameters u can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte)
+For documentation on which parameters you can set and use look at the official [Svelte docs](https://svelte.dev/docs#Compile_time)
 
 ```Javascript
-// Used by svelte.compile
-compilerOptions: {
-  ...
-},
-// Used by svelte.preprocess
-preprocess: {
-  ...
+{
+  // Used by svelte.compile
+  compilerOptions: {
+    ...
+  },
+  
+  // Used by svelte.preprocess
+  preprocess: {
+    ...
+  }
 }
 ```
 
