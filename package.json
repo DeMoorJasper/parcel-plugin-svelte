@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-svelte",
-  "version": "2.1.0-alpha-0",
+  "version": "3.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -14,8 +14,12 @@
     "clean": "lerna run clean && lerna clean -y"
   },
   "workspaces": [
-    "packages/*"
+    "svelte-3/*",
+    "parcel-plugin-svelte"
   ],
+  "resolutions": {
+    "svelte": "^3.0.0"
+  },
   "devDependencies": {
     "husky": "^1.3.1",
     "lerna": "^3.13.0",
@@ -32,8 +36,5 @@
       "prettier --write",
       "git add"
     ]
-  },
-  "optionalDependencies": {
-    "svelte": "3.0.0-alpha1"
   }
 }

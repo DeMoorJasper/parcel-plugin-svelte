@@ -1,0 +1,15 @@
+{
+  "name": "svelte-3-example",
+  "main": "index.html",
+  "version": "3.0.0",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "parcel index.html --no-cache"
+  },
+  "dependencies": {
+    "parcel-bundler": "^1.11.0",
+    "parcel-plugin-svelte": "^3.0.0",
+    "svelte": "^3.0.0"
+  }
+}
