@@ -1,4 +1,4 @@
 {
-  "packages": ["parcel-plugin-svelte", "svelte-2/*", "svelte-3/*"],
+  "packages": ["packages/*"],
   "version": "3.0.0"
 }
