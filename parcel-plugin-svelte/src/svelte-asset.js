@@ -83,7 +83,7 @@ class SvelteAsset extends Asset {
     let { css, js } = compile(this.contents, compilerOptions);
     let { map, code } = js;
 
-    if (process.env.NODE_ENV !== 'production') {
+    if (process.env.NODE_ENV !== 'production' && this.options.hmr) {
       code = makeHot(compilerOptions.filename, code, this);
     }
 
