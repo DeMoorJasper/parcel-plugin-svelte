@@ -12,7 +12,7 @@
     "@babel/core": "^7.2.2",
     "@babel/preset-env": "^7.3.1",
     "@babel/register": "^7.0.0",
-    "mocha": "^5.1.1",
+    "mocha": "^6.1.4",
     "parcel-assert-bundle-tree": "^1.0.0",
     "parcel-bundler": "^1.11.0",
     "parcel-plugin-svelte": "^2.0.0",
