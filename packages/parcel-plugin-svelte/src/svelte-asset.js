@@ -42,6 +42,12 @@ class SvelteAsset extends Asset {
   async getConfig() {
     let config = (await super.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
     config = config.svelte || config;
+    
+    // If somebody use svelte field as a path to unprocessed sources
+    // @see https://github.com/rollup/rollup-plugin-svelte#pkgsvelte
+    if (config == null || typeof config !== "object") {
+      config = {};
+    }
 
     let defaultOptions = {
       generate: 'dom',
