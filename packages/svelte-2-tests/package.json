@@ -16,6 +16,6 @@
     "parcel-assert-bundle-tree": "^1.0.0",
     "parcel-bundler": "^1.11.0",
     "parcel-plugin-svelte": "^2.0.0",
-    "svelte": "^2.16.1"
+    "svelte": "^3.6.7"
   }
 }
