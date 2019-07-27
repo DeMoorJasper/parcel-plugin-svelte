@@ -82,7 +82,7 @@ class SvelteAsset extends Asset {
     let compilerOptions = config.compilerOptions;
 
     if (config.preprocess) {
-      const preprocessed = await preprocess(this.contents, config.preprocess);
+      const preprocessed = await preprocess(this.contents, config.preprocess, config.compilerOptions);
       this.contents = preprocessed.toString();
     }
 
