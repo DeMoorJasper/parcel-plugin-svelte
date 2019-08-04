@@ -42,10 +42,10 @@ class SvelteAsset extends Asset {
   async getConfig() {
     let config = (await super.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
     config = config.svelte || config;
-    
+
     // If somebody use svelte field as a path to unprocessed sources
     // @see https://github.com/rollup/rollup-plugin-svelte#pkgsvelte
-    if (config == null || typeof config !== "object") {
+    if (config == null || typeof config !== 'object') {
       config = {};
     }
 
@@ -89,7 +89,8 @@ class SvelteAsset extends Asset {
     let { css, js } = compile(this.contents, compilerOptions);
     let { map, code } = js;
 
-    if (process.env.NODE_ENV !== 'production' && this.options.hmr) {
+    // Enable HMR only on svelte 2.x or below
+    if (this.options.hmr && major_version < 3) {
       code = makeHot(compilerOptions.filename, code, this);
     }
 
