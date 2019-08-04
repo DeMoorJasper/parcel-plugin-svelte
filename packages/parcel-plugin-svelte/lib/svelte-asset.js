@@ -1,7 +1,5 @@
 const path = require('path');
-
 const { compile, preprocess } = require('svelte/compiler.js');
-
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
 
