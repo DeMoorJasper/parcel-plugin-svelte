@@ -9,7 +9,7 @@ describe('basic', function() {
 
     assertBundleTree(bundle, {
       type: 'js',
-      assets: ['App.svelte', 'hot-api.js', 'index.js', 'index.js', 'internal.js', 'proxy.js', 'registry.js']
+      assets: ['App.svelte', 'index.mjs', 'internal.js', 'internal.mjs']
     });
   });
 });
