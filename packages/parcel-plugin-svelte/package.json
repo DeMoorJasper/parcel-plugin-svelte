@@ -20,7 +20,7 @@
   "license": "ISC",
   "peerDependencies": {
     "parcel-bundler": "^1.11.0",
-    "svelte": "^3.0.0 || ^2.0.0"
+    "svelte": "^3.0.0"
   },
   "dependencies": {
     "svelte-dev-helper": "^1.1.7"

@@ -5,7 +5,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "start": "parcel index.html --no-cache"
+    "start": "parcel index.html --no-cache",
+    "clean": "rm -rf dist .cache"
   },
   "dependencies": {
     "@babel/polyfill": "^7.4.4",

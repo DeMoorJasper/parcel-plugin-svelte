@@ -1,9 +1,6 @@
 const path = require('path');
 
-const { version } = require('svelte/package.json');
-const major_version = +version[0];
-
-const { compile, preprocess } = major_version >= 3 ? require('svelte/compiler.js') : require('svelte');
+const { compile, preprocess } = require('svelte/compiler.js');
 
 const { Asset } = require('./parcel-adapter');
 const { sanitize, capitalize } = require('./utils');
@@ -56,14 +53,8 @@ class SvelteAsset extends Asset {
 
     let customCompilerOptions = config.compilerOptions || {};
 
-    if (major_version >= 3) {
-      defaultOptions.format = 'esm';
-      defaultOptions.sveltePath = 'svelte';
-    } else {
-      defaultOptions.format = 'es';
-      defaultOptions.store = true;
-      defaultOptions.shared = 'svelte/shared.js';
-    }
+    defaultOptions.format = 'esm';
+    defaultOptions.sveltePath = 'svelte';
 
     let fixedCompilerOptions = {
       filename: this.relativeName,
@@ -89,10 +80,10 @@ class SvelteAsset extends Asset {
     let { css, js } = compile(this.contents, compilerOptions);
     let { map, code } = js;
 
-    // Enable HMR only on svelte 2.x or below
-    if (this.options.hmr && major_version < 3) {
+    // TODO: Enable HMR if svelte 3 is supported properly
+    /*if (this.options.hmr) {
       code = makeHot(compilerOptions.filename, code, this);
-    }
+    }*/
 
     css = css.code;
 

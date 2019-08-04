@@ -5,9 +5,7 @@
   "private": true,
   "scripts": {
     "bootstrap": "lerna bootstrap",
-    "test": "yarn test:2 && yarn test:3",
-    "test:2": "yarn add svelte@2.16.1 --exact -OW && lerna run test:2",
-    "test:3": "yarn add svelte@3.0.0-alpha1 --exact -OW && lerna run test:3",
+    "test": "lerna run test",
     "format": "prettier --write \"./packages/**/*.{js,json,md}\"",
     "build": "lerna run build",
     "prepublish": "yarn build",
@@ -16,9 +14,6 @@
   "workspaces": [
     "packages/*"
   ],
-  "resolutions": {
-    "svelte": "^3.0.0"
-  },
   "devDependencies": {
     "husky": "^3.0.1",
     "lerna": "^3.13.0",
