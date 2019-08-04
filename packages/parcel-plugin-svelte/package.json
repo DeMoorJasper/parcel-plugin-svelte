@@ -1,6 +1,6 @@
 {
   "name": "parcel-plugin-svelte",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "description": "Parcel plugin to support svelte",
   "main": "./dist.js",
   "scripts": {

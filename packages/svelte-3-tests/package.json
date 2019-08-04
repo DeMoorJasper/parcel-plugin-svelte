@@ -1,6 +1,6 @@
 {
   "name": "svelte-3-tests",
-  "version": "3.0.1",
+  "version": "4.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -15,7 +15,7 @@
     "mocha": "^6.2.0",
     "parcel-assert-bundle-tree": "^1.0.0",
     "parcel-bundler": "^1.11.0",
-    "parcel-plugin-svelte": "^3.0.1",
+    "parcel-plugin-svelte": "^4.0.0",
     "svelte": "^3.0.0"
   }
 }
