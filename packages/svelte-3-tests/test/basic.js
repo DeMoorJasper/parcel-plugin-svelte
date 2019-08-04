@@ -7,10 +7,9 @@ describe('basic', function() {
     const bundler = await setupBundler(path.join(__dirname, './Integration/Basic/App.svelte'));
     const bundle = await bundler.bundle();
 
-    // , 'internal.mjs'
     assertBundleTree(bundle, {
       type: 'js',
-      assets: ['App.svelte', 'index.mjs']
+      assets: ['App.svelte', 'index.mjs', 'index.mjs']
     });
   });
 });
