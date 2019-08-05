@@ -4,6 +4,5 @@ package-lock.json
 yarn.lock
 .cache
 dist
-lib
 yarn-error.log
 .DS_Store
