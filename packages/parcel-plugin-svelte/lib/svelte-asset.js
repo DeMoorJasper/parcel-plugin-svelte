@@ -8,73 +8,51 @@ class SvelteAsset extends Asset {
   }
 
   async getConfig() {
-    let config = (await super.getConfig(['.svelterc', 'svelte.config.js', 'package.json'])) || {};
-    config = config.svelte || config;
+    const customOptions = (await super.getConfig(['.svelterc', 'svelte.config.js'], { packageKey: 'svelte' })) || {};
 
-    // If somebody use svelte field as a path to unprocessed sources
-    // @see https://github.com/rollup/rollup-plugin-svelte#pkgsvelte
-    if (config == null || typeof config !== 'object') {
-      config = {};
-    }
-
-    let defaultOptions = {
-      generate: 'dom',
-      css: true
-    };
-
-    let customCompilerOptions = config.compilerOptions || {};
-
-    defaultOptions.format = 'esm';
-    defaultOptions.sveltePath = 'svelte';
-
-    let fixedCompilerOptions = {
+    // Settings for the compiler that depend on parcel.
+    const parcelCompilerOptions = {
       filename: this.relativeName,
-      // The name of the constructor. Required for 'iife' and 'umd' output,
-      // but otherwise mostly useful for debugging. Defaults to 'SvelteComponent'
-      name: generateName(this.relativeName)
+      name: generateName(this.relativeName),
+      dev: this.options.production
     };
 
-    config.compilerOptions = Object.assign({}, defaultOptions, customCompilerOptions, fixedCompilerOptions);
+    // parcelCompilerOptions will overwrite the custom ones,
+    // because otherwise it can break the compilation process.
+    // Note: "compilerOptions" is deprecated and replaced by compiler.
+    // Since the depracation didnt take effect yet, we still support the old way.
+    const compiler = { ...customOptions.compilerOptions, ...customOptions.compiler, ...parcelCompilerOptions };
 
-    return config;
+    return { compiler, preprocess };
   }
 
   async generate() {
-    let config = await this.getConfig();
-    let compilerOptions = config.compilerOptions;
+    const config = this.getConfig();
 
     if (config.preprocess) {
-      const preprocessed = await preprocess(this.contents, config.preprocess, config.compilerOptions);
+      const preprocessed = await preprocess(this.contents, config.preprocess, config.compiler);
       this.contents = preprocessed.toString();
     }
 
-    let { css, js } = compile(this.contents, compilerOptions);
-    let { map, code } = js;
-
-    // TODO: Enable HMR if svelte 3 is supported properly
-    /*if (this.options.hmr) {
-      code = makeHot(compilerOptions.filename, code, this);
-    }*/
-
-    css = css.code;
+    const { js, css } = compile(this.contents);
 
     if (this.options.sourceMaps) {
-      map.sources = [this.relativeName];
-      map.sourcesContent = [this.contents];
+      js.map.sources = [this.relativeName];
+      js.map.sourcesContent = [this.contents];
     }
 
     const parts = [
       {
         type: 'js',
-        value: code,
-        sourceMap: this.options.sourceMaps ? map : undefined
+        value: js.code,
+        sourceMap: this.options.sourceMaps ? js.map : undefined
       }
     ];
 
     if (css) {
       parts.push({
         type: 'css',
-        value: css
+        value: css.code
       });
     }
 
