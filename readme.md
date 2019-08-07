@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_apis/build/status/DeMoorJasper.parcel-plugin-svelte?branchName=master)](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_build/latest?definitionId=3&branchName=master)
 
-A parcel plugin that enables Svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
+A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
 
 ## Installation
 
@@ -22,25 +22,24 @@ The default configuration should work for most people but for anyone who would l
 
 This can be done though a `svelte.config.js` file, `.svelterc` file or `svelte` field in `package.json`.
 
-For documentation on which parameters you can set and use look at the official [Svelte docs](https://svelte.dev/docs#Compile_time)
+For documentation on which parameters you can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte).
 
 ```Javascript
-{
-  // Used by svelte.compile
-  compilerOptions: {
-    ...
-  },
-  
-  // Used by svelte.preprocess
-  preprocess: {
-    ...
-  }
+// Used by svelte.compile
+compiler: {
+  ...
+},
+// Used by svelte.preprocess
+preprocess: {
+  ...
 }
 ```
 
+**_Note: the use of `compilerOptions` property will be deprecated on the next major version, you should use the`compiler` property instead._**
+
 ### CSS CompilerOptions
 
-If you set `compilerOptions.css` to `false`, CSS will be bundled in a separate file. It also enables post-transformations provided by Parcel such as PostCSS and file resolution for `url()`.
+If you set `compiler.css` to `false`, CSS will be bundled in a separate file. It also enables post-transformations provided by Parcel such as PostCSS and file resolution for `url()`.
 
 ## How does it work?
 
