@@ -22,7 +22,7 @@ class SvelteAsset extends Asset {
     // Note: "compilerOptions" is deprecated and replaced by compiler.
     // Since the depracation didnt take effect yet, we still support the old way.
     const compiler = { ...customOptions.compilerOptions, ...customOptions.compiler, ...parcelCompilerOptions };
-    const preprocess = customOptions.preprocess
+    const preprocess = customOptions.preprocess;
 
     return { compiler, preprocess };
   }
@@ -31,11 +31,11 @@ class SvelteAsset extends Asset {
     const config = await this.getConfig();
 
     if (config.preprocess) {
-      const preprocessed = await preprocess(this.contents, config.preprocess, config.compiler);
+      const preprocessed = await preprocess(this.contents, config.preprocess, { filename: config.compiler.filename });
       this.contents = preprocessed.toString();
     }
 
-    const { js, css } = compile(this.contents);
+    const { js, css } = compile(this.contents, config.compiler);
 
     if (this.options.sourceMaps) {
       js.map.sources = [this.relativeName];
