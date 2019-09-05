@@ -2,7 +2,7 @@
 
 [![Build Status](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_apis/build/status/DeMoorJasper.parcel-plugin-svelte?branchName=master)](https://dev.azure.com/DeMoorJasper/parcel-plugin-svelte/_build/latest?definitionId=3&branchName=master)
 
-A parcel plugin that enables svelte support [[CHANGELOG]](https://github.com/DeMoorJasper/parcel-plugin-svelte/blob/master/CHANGELOG.md)
+A parcel plugin that enables svelte support
 
 ## Installation
 
