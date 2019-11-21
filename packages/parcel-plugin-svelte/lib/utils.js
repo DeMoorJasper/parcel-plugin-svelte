@@ -10,6 +10,7 @@ function generateName(input) {
     .replace(/^(\d)/, '_$1');
 
   name = name[0].toUpperCase() + name.slice(1);
+  return name;
 }
 
 function makeHot(id, code, asset) {
