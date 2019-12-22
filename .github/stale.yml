@@ -1,7 +1,7 @@
 # Half a year seems fair to become stale...
-daysUntilStale: 180
+daysUntilStale: 60
 # Number of days of inactivity before a stale issue is closed
-daysUntilClose: 14
+daysUntilClose: 30
 # Issues with these labels will never be considered stale
 exemptLabels:
   - pinned
