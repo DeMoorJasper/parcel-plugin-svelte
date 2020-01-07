@@ -15,7 +15,7 @@
     "packages/*"
   ],
   "devDependencies": {
-    "husky": "^3.0.1",
+    "husky": "^4.0.0",
     "lerna": "^3.13.0",
     "lint-staged": "^9.2.1",
     "prettier": "^1.16.4"
