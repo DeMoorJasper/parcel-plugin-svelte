@@ -138,6 +138,10 @@ If you set `compiler.css` to `false`, CSS will be bundled in a separate file. It
 
 If you want to know how it works have a look at [my article](https://medium.com/@jasperdemoor/writing-a-parcel-plugin-3936271cbaaa) about this plugin, might help if you wanna fix a bug or write your own parcel-plugin.
 
+## Any more questions?
+
+Any more questions about how the plugin works internally or how to use it? Feel free to open an issue in the repository.
+
 ## License
 
 MIT License
