@@ -4,16 +4,100 @@
 
 A parcel plugin that enables svelte support
 
-## Installation
+## Getting Started
+
+### Install dependencies
 
 ```bash
-yarn add parcel-plugin-svelte -D
+yarn add parcel-bundler parcel-plugin-svelte @babel/polyfill -D
 ```
 
-or
+### Update the package.json
 
-```bash
-npm install parcel-plugin-svelte -D
+Update your `package.json` to contain these scripts (for more information on these commands, see: https://parceljs.org/cli.html):
+
+```json
+{
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  }
+}
+```
+
+### Create the files
+
+Create an html file that will be used as the entrypoint, name it `index.html`:
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Parcel Plugin Svelte Example</title>
+</head>
+<body>
+    <div id="demo"></div>
+    
+    <!-- This script tag points to the source of the JS file we want to load and bundle -->
+    <script src="main.js"></script>
+</body>
+</html>
+```
+
+Create a simple JavaScript file named `main.js`:
+
+```Javascript
+import '@babel/polyfill';
+import App from './App.svelte';
+
+const app = new App({
+  target: document.getElementById('demo'),
+  data: {
+    name: 'world'
+  }
+});
+```
+
+Create a Svelte file named `App.svelte`:
+
+```svelte
+<p>
+  Hello { name }, the time is <span class="the-time">{ hours }:{ minutes }:{ seconds }</span>
+</p>
+
+<style>
+  .the-time {
+    font-weight: bold;
+  }
+</style>
+
+<script>
+	import { onMount } from 'svelte'
+	
+	export let name = 'Anonymous'
+	let time = new Date()
+	
+	onMount(() => {
+		const timer = setInterval(() => {
+			time = new Date()
+		}, 1000)
+		
+		return () => {
+			clearInterval(timer)
+		}
+	})
+	
+	let hours, minutes, seconds
+	
+	$: {
+		hours = time.getHours()
+		minutes = time.getMinutes()
+		seconds = time.getSeconds()
+	}
+</script>
 ```
 
 ## Configuration
