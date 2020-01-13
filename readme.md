@@ -100,6 +100,15 @@ Create a Svelte file named `App.svelte`:
 </script>
 ```
 
+### Further reading
+
+To continue your journey into Svelte and Parcel please have a look at their documentation:
+
+- https://svelte.dev/
+- https://parceljs.org/
+
+for configuring this plugin, please read [#Configuration](https://github.com/DeMoorJasper/parcel-plugin-svelte#Configuration)
+
 ## Configuration
 
 The default configuration should work for most people but for anyone who would like to change the way svelte compiles the files there is the possibility to configure it.
