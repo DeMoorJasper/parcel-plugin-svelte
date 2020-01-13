@@ -75,28 +75,28 @@ Create a Svelte file named `App.svelte`:
 </style>
 
 <script>
-	import { onMount } from 'svelte'
+  import { onMount } from 'svelte';
 	
-	export let name = 'Anonymous'
-	let time = new Date()
+  export let name = 'Anonymous';
+  let time = new Date();
+  
+  onMount(() => {
+    const timer = setInterval(() => {
+      time = new Date();
+    }, 1000)
+    
+    return () => {
+      clearInterval(timer);
+    }
+  })
 	
-	onMount(() => {
-		const timer = setInterval(() => {
-			time = new Date()
-		}, 1000)
-		
-		return () => {
-			clearInterval(timer)
-		}
-	})
+  let hours, minutes, seconds;
 	
-	let hours, minutes, seconds
-	
-	$: {
-		hours = time.getHours()
-		minutes = time.getMinutes()
-		seconds = time.getSeconds()
-	}
+  $: {
+    hours = time.getHours();
+    minutes = time.getMinutes();
+    seconds = time.getSeconds();
+  }
 </script>
 ```
 
