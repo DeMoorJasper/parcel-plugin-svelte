@@ -144,4 +144,4 @@ Any more questions about how the plugin works internally or how to use it? Feel 
 
 ## License
 
-MIT License
+This project is licensed under the MIT License
