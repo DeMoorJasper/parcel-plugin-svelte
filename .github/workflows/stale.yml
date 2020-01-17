@@ -1,0 +1,16 @@
+name: 'Close stale issues'
+on:
+  schedule:
+    - cron: '0 0 * * *'
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: DeMoorJasper/stale
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          stale-message: >
+            This issue has been automatically marked as stale because 
+            it has not had recent activity. It will be closed in 14 days if no 
+            further activity occurs. Thank you for your contributions.
