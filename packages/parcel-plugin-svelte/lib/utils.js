@@ -13,31 +13,6 @@ function generateName(input) {
   return name;
 }
 
-function makeHot(id, code, asset) {
-  const hotApiRequire = path.relative(path.dirname(asset.name), require.resolve('./hot-api')).replace(/\\/g, '/');
-
-  const replacement = `
-    if (module.hot) {
-      const { configure, register, reload } = require('${hotApiRequire}');
-
-      module.hot.accept();
-
-      if (!module.hot.data) {
-        // initial load
-        configure({});
-        $3 = register('${id}', $3);
-      } else {
-        // hot update
-        $3 = reload('${id}', $3);
-      }
-    }
-
-    module.exports = $3;
-  `;
-
-  return code.replace(/((module.exports =|export default) ([^;]*));/, replacement);
-}
-
 // Parcel can be added as a dependency by using two different
 // names. This is how we get the right one.
 function getAssetClass() {
@@ -50,6 +25,5 @@ function getAssetClass() {
 
 module.exports = {
   generateName,
-  makeHot,
   Asset: getAssetClass()
-}
+};
