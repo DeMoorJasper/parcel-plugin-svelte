@@ -32,18 +32,18 @@ Create an html file that will be used as the entrypoint, name it `index.html`:
 ```html
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Parcel Plugin Svelte Example</title>
-</head>
-<body>
+  </head>
+  <body>
     <div id="demo"></div>
-    
+
     <!-- This script tag points to the source of the JS file we want to load and bundle -->
     <script src="main.js"></script>
-</body>
+  </body>
 </html>
 ```
 
@@ -76,22 +76,22 @@ Create a Svelte file named `App.svelte`:
 
 <script>
   import { onMount } from 'svelte';
-	
+
   export let name = 'Anonymous';
   let time = new Date();
-  
+
   onMount(() => {
     const timer = setInterval(() => {
       time = new Date();
     }, 1000)
-    
+
     return () => {
       clearInterval(timer);
     }
   })
-	
+
   let hours, minutes, seconds;
-	
+
   $: {
     hours = time.getHours();
     minutes = time.getMinutes();
