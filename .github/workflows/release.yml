@@ -7,7 +7,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
       - uses: bahmutov/npm-install@v1.1.0
-      - run: yarn nightly:release --registry=//registry.npmjs.org/:_authToken=${NPM_TOKEN}
+      - run: yarn nightly:release --registry=https://registry.npmjs.org/:_authToken=${NPM_TOKEN}
         env:
           NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
