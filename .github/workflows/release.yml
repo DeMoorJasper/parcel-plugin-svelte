@@ -9,4 +9,4 @@ jobs:
       - uses: bahmutov/npm-install@v1.1.0
       - run: yarn nightly:release
         env:
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
