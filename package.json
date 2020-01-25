@@ -9,7 +9,8 @@
     "format": "prettier --write \"./packages/**/*.{js,json,md}\"",
     "build": "lerna run build",
     "prepublish": "yarn build",
-    "clean": "lerna run clean && lerna clean -y"
+    "clean": "lerna run clean && lerna clean -y",
+    "nightly:release": "lerna publish -y --canary --preid nightly --dist-tag=nightly"
   },
   "workspaces": [
     "packages/*"
