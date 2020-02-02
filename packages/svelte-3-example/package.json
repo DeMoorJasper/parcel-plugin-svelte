@@ -1,7 +1,7 @@
 {
   "name": "svelte-3-example",
   "main": "index.html",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "license": "MIT",
   "private": true,
   "scripts": {
@@ -11,7 +11,7 @@
   "dependencies": {
     "@babel/polyfill": "^7.4.4",
     "parcel-bundler": "^1.11.0",
-    "parcel-plugin-svelte": "^4.0.5",
+    "parcel-plugin-svelte": "^4.0.6",
     "svelte": "^3.0.0"
   }
 }
