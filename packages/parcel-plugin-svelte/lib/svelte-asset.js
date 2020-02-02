@@ -32,6 +32,11 @@ class SvelteAsset extends Asset {
 
     if (config.preprocess) {
       const preprocessed = await preprocess(this.contents, config.preprocess, { filename: config.compiler.filename });
+      if (preprocessed.dependencies) {
+        for (const dependency of preprocessed.dependencies) {
+          this.addDependency(dependency, { includedInParent: true });
+        }
+      }
       this.contents = preprocessed.toString();
     }
 
