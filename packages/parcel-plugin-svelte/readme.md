@@ -22,7 +22,7 @@ The default configuration should work for most people but for anyone who would l
 
 This can be done though a `svelte.config.js` file, `.svelterc` file or `svelte` field in `package.json`.
 
-For documentation on which parameters you can set and use look at the official [svelte docs](https://github.com/sveltejs/svelte).
+For documentation on which parameters you can set and use look at the official [svelte docs](https://svelte.dev/docs#svelte_compile).
 
 ```Javascript
 // Used by svelte.compile
