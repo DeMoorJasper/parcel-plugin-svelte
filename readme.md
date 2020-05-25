@@ -8,16 +8,8 @@ A parcel plugin that enables svelte support
 
 ### Install dependencies
 
-Install Svelte as a dependancy for the project
-
 ```bash
-yarn add svelte
-```
-
-Next install the Dev dependacies you need to Svelte & Parcel 
-
-```bash
-yarn add parcel-bundler parcel-plugin-svelte @babel/polyfill -D
+yarn add svelte parcel-bundler parcel-plugin-svelte @babel/polyfill -D
 ```
 
 ### Update the package.json
