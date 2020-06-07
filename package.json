@@ -1,6 +1,5 @@
 {
   "name": "parcel-plugin-svelte",
-  "version": "3.0.0",
   "license": "MIT",
   "private": true,
   "scripts": {
