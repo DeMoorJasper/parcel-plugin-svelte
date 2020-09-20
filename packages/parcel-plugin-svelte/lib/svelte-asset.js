@@ -14,7 +14,8 @@ class SvelteAsset extends Asset {
     const parcelCompilerOptions = {
       filename: this.relativeName,
       name: generateName(this.relativeName),
-      dev: !this.options.production
+      dev: !this.options.production,
+      css: false
     };
 
     // parcelCompilerOptions will overwrite the custom ones,
