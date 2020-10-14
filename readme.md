@@ -118,8 +118,8 @@ This can be done though a `svelte.config.js` file, `.svelterc` file or `svelte` 
 For documentation on which parameters you can set and use look at the official [svelte docs](https://svelte.dev/docs#svelte_compile).
 
 ```Javascript
-// Used by svelte.compile
-compiler: {
+// Used by svelte.compilerOptions
+compilerOptions: {
   ...
 },
 // Used by svelte.preprocess
@@ -128,11 +128,11 @@ preprocess: {
 }
 ```
 
-**_Note: the use of `compilerOptions` property will be deprecated on the next major version, you should use the`compiler` property instead._**
+**_Note: the use of `compiler` property will be deprecated on the next major version, you should use the`compilerOptions` property instead._**
 
 ### CSS CompilerOptions
 
-If you set `compiler.css` to `false`, CSS will be bundled in a separate file. It also enables post-transformations provided by Parcel such as PostCSS and file resolution for `url()`.
+If you set `compilerOptions.css` to `false`, CSS will be bundled in a separate file. It also enables post-transformations provided by Parcel such as PostCSS and file resolution for `url()`.
 
 ## How does it work?
 
