@@ -1,5 +1,5 @@
 const { Asset, generateName } = require('./utils');
-const { compile, preprocess } = require('svelte/compiler.js');
+const { compile, preprocess } = require('svelte/compiler');
 
 class SvelteAsset extends Asset {
   constructor(name, pkg, options) {
