@@ -53,9 +53,9 @@ Create a simple JavaScript file named `main.js`:
 import '@babel/polyfill';
 import App from './App.svelte';
 
-const app = new App({
+new App({
   target: document.getElementById('demo'),
-  data: {
+  props: {
     name: 'world'
   }
 });
