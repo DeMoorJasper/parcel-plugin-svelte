@@ -14,7 +14,7 @@ yarn add svelte parcel-bundler parcel-plugin-svelte @babel/polyfill -D
 
 ### Update the package.json
 
-Update your `package.json` to contain these scripts (for more information on these commands, see: https://parceljs.org/cli.html):
+Update your `package.json` to contain these scripts (for more information on these commands, see: https://parceljs.org/features/cli/):
 
 ```json
 {
